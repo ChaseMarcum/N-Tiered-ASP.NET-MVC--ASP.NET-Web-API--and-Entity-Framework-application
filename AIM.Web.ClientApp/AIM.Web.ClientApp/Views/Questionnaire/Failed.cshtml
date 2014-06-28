@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Failed";
+}
+
+<div style="text-align: center;">
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <fieldset>
+            <div class="jumbotron">
+                <h2 style="width: 100%; font-size: 150px; display: inline-block; color: darkblue;">SORRY</h2>
+                <hr style="border-top: 1px solid white" />
+
+                <div>
+                    <h2 style="width: 100%; height: 46px; display: inline-block;">You do not meet the qualifications for this position. </h2>
+                </div>
+
+                <hr style="border-top: 1px solid white; margin-bottom: 10px;" />
+
+            </div>
+            <p>
+                <input type="submit" value="New Search" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+            </p>
+        </fieldset>
+
+    }
+</div>

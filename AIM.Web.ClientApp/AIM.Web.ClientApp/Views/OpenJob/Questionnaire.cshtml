@@ -1,0 +1,41 @@
+﻿@*@model AIM.Application.Service.Entities.Models.OpenJob*@
+
+@{
+    ViewBag.Title = "Questionnaire";
+    Layout = "~/Views/Shared/_Layout_Questionnaire.cshtml";
+}
+
+<h2>Questionnaire</h2>
+
+
+<script>
+    ("#wizard").steps();
+</script>
+
+<section id="basic">
+    <h2 class="page-header">Basic Example</h2>
+    <div class="wizard clearfix" id="wizard-1" role="application">
+        <div class="steps clearfix"><ul role="tablist"><li class="first current" role="tab" aria-disabled="false" aria-selected="true"><a id="wizard-1-t-0" aria-controls="wizard-1-p-0" href="#wizard-1-h-0"><span class="current-info audible">current step: </span><span class="number">1.</span> Keyboard</a></li><li class="disabled" role="tab" aria-disabled="true"><a id="wizard-1-t-1" aria-controls="wizard-1-p-1" href="#wizard-1-h-1"><span class="number">2.</span> Effects</a></li><li class="disabled last" role="tab" aria-disabled="true"><a id="wizard-1-t-2" aria-controls="wizard-1-p-2" href="#wizard-1-h-2"><span class="number">3.</span> Pager</a></li></ul></div><div class="content clearfix">
+            <h3 tabindex="-1" class="title current" id="wizard-1-h-0">Keyboard</h3>
+            <section class="body current" id="wizard-1-p-0" role="tabpanel" aria-hidden="false" aria-labelledby="wizard-1-h-0">
+                <p>Try the keyboard navigation by clicking arrow left or right!</p>
+            </section>
+            <h3 tabindex="-1" class="title" id="wizard-1-h-1">Effects</h3>
+            <section class="body" id="wizard-1-p-1" role="tabpanel" aria-hidden="true" aria-labelledby="wizard-1-h-1" style="display: none;">
+                <p>Wonderful transition effects.</p>
+            </section>
+            <h3 tabindex="-1" class="title" id="wizard-1-h-2">Pager</h3>
+            <section class="body" id="wizard-1-p-2" role="tabpanel" aria-hidden="true" aria-labelledby="wizard-1-h-2" style="display: none;">
+                <p>The next and previous buttons help you to navigate through your content.</p>
+            </section>
+        </div><div class="actions clearfix"><ul role="menu" aria-label="Pagination"><li class="disabled" aria-disabled="true"><a role="menuitem" href="#previous">Previous</a></li><li aria-disabled="false" aria-hidden="false"><a role="menuitem" href="#next">Next</a></li><li aria-hidden="true" style="display: none;"><a role="menuitem" href="#finish">Finish</a></li></ul></div>
+    </div>
+</section>
+
+@*<div id="wizard">
+    <h1>First Step</h1>
+    <div>First Content</div>
+
+    <h1>Second Step</h1>
+    <div>Second Content</div>
+</div>*@

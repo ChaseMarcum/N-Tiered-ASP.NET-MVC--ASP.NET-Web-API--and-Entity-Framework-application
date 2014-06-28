@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Passed";
+}
+
+<div style="text-align: center;">
+    @using (Html.BeginForm("Index", "Application"))
+    {
+        <fieldset>
+            <div class="jumbotron">
+                <h2 style="width: 100%; height: 150px; font-size: 97px; display: inline-block; color: darkblue;">CONGRATULATIONS</h2>
+                <hr style="border-top: 1px solid white" />
+
+                <div>
+                    <h2 style="width: 100%; height: 46px; display: inline-block;">You meet the qualifications for this position. </h2>
+                </div>
+
+                <hr style="border-top: 1px solid white; margin-bottom: 10px;" />
+            </div>
+            <p>
+                <input type="submit" value="Proceed to Application" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+            </p>
+        </fieldset>
+    }
+
+</div>

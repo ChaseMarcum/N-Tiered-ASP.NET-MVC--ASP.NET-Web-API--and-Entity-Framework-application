@@ -1,0 +1,80 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.Job
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hour.HoursId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hour.HoursId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterviewQuestion.InterviewQuestionsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterviewQuestion.InterviewQuestionsId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Questionnaire.QuestionnaireId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Questionnaire.QuestionnaireId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullPartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullPartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryRange)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,113 @@
+﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Store>
+
+@{
+    ViewBag.Title = "Store Select";
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
+}
+
+@if (ActiveUserName != null)
+{
+    if (ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager")
+    {
+
+<center>
+    <h1>Browse Job Openings</h1>
+</center>
+
+<h3>Select the store within the region</h3>
+
+<center>
+    @using (Html.BeginForm("OpenJobList", "OpenJob", FormMethod.Get))
+    {
+        <fieldset>
+            Select store: <select name="StoreId">
+                @foreach (var item in Model)
+                {
+                    <option value=@item.StoreId>@item.Name</option>
+                }
+            </select>
+    
+            <p>
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </p>
+        </fieldset>
+    }
+</center>
+
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}

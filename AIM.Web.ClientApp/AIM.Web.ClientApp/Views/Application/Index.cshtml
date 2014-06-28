@@ -1,0 +1,667 @@
+﻿@model AIM.Web.ClientApp.Models.ApplicationViewModel
+@using System.Threading
+@using AIM.Web.ClientApp.Helper
+@using AIM.Web.ClientApp.Models.EntityModels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/Application.css" rel="stylesheet" />
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/application.js"></script>
+    <script type="text/javascript">
+        Application.SaveUrl = '@Url.Action("SaveApplicationDetails", "Application")';
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Application)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Applicant)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Job)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.ApplicantQuestionAnswer)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Education)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.JobHistory)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Hour)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Reference)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.User)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.PersonalInfo)));
+    </script>
+}
+
+<h2>Application</h2>
+
+
+<p>Creating Apllication on @Html.DisplayFor(model => model.Application.DateCreated)</p>
+
+<form id="application-form" action="#">
+
+    <!----------------------  Personal section of Application form  ---------------------->
+
+    <h1>Personal:</h1>
+    <fieldset>
+        <legend style="margin-bottom: -30px;">Personal Information</legend>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>First name: *</label>
+                            <input data-bind="User: FirstName" name="User.FirstName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Middle name: *</label>
+                            <input data-bind="User: MiddleName" name="User.MiddleName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Last name: *</label>
+                            <input data-bind="User: LastName" name="User.LastName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Email: *</label>
+                            <input data-bind="User: Email" name="User.Email" type="email" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Social Security Number: *</label>
+                            <input data-bind="User: SocialSecurityNumber" name="User.SocialSecurityNumber" type="password" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>User name: *</label>
+                            <input data-bind="User: UserName" name="User.UserName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Password: *</label>
+                            <input data-bind="User: Password" name="User.Password" type="password" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Street Address: *</label>
+                            <input data-bind="PersonalInfo: Street" name="PersonalInfo.Street" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Street Address addtional:</label>
+                            <input data-bind="PersonalInfo: Street2" name="PersonalInfo.Street2" type="password" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>City: *</label>
+                            <input data-bind="PersonalInfo: City" name="PersonalInfo.City" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>State: *</label>
+                            <input data-bind="PersonalInfo: State" name="PersonalInfo.State" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Zip: *</label>
+                            <input data-bind="UserPersonalInfo: Zip" name="PersonalInfo.Zip" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Primary Phone: *</label>
+                            <input data-bind="PersonalInfo: Phone" name="PersonalInfo.Phone" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Other name known by:</label>
+                            <input data-bind="PersonalInfo: Alias" name="PersonalInfo.Alias" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <!----------------------  Position section of Application form ---------------------->
+
+    <h1>Position:</h1>
+    <fieldset>
+        <legend style="margin-bottom: -30px;">Position Information</legend>
+
+        <div class="row" style="">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Postion Applying for:  </label>
+                            @Html.DisplayFor(model => model.Job.Position)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>position is a :</label>
+                            @Html.DisplayFor(model => model.Job.FullPartTime) position
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Salary Expectation: *</label>
+                            <input data-bind="Application: SalaryExpectation" name="Application.SalaryExpectation" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Days? : </label>
+                            <input data-bind="Application: IsDays" name="Application.IsDays" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Eveings? : </label>
+                            <input data-bind="Application: IsEvenings" name="Application.IsEvenings" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Weekends? : </label>
+                            <input data-bind="Application: IsWeekends" name="Application.IsWeekends" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row>">
+            <label>Available Hours: </label>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2">
+                <label>Monday hours</label>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <label>Tuesday hours </label>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <label>Wednesday hours </label>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <label>Thursday hours </label>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <label>Friday hours </label>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <label>Weekend hours</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: MonOpen" name="Hour.MonOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: TueOpen" name="Hour.TueOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: WedOpen" name="Hour.WedOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: ThursOpen" name="Hour.ThursOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: FriOpen" name="Hour.FriOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: SatOpen" name="Hour.SatOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: MonClose" name="Hour.MonClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: TueClose" name="Hour.TueClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: WedClose" name="Hour.WedClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: ThursClose" name="Hour.ThursClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: FriClose" name="Hour.FriClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: SatClose" name="Hour.SatClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <!----------------------  Job History section of Application form  ---------------------->
+    @{ var num = 0;}
+
+
+    @for (var i = 0; i < 3; ++i)
+    {
+        num = i + 1;
+        <h1>Work @num:</h1>
+        <fieldset>
+            <legend style="margin-bottom: -30px;">Job History @num :</legend>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Employer Name: </label>
+                                <input name="JobHistory[i].EmployerName" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Date From: *</label>
+                                <input name="JobHistory[i].DateFrom" type="date" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Date To: </label>
+                                <input name="JobHistory[i].DateTo" type="date" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Position Held: </label>
+                                <input name="JobHistory[i].Position" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>StartingSalary: </label>
+                                <input name="JobHistory[i].StartingSalary" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>EndingSalary: </label>
+                                <input name="JobHistory[i].EndingSalary" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Phone : </label>
+                                <input name="JobHistory[i].Phone" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Supervisor : </label>
+                                <input name="JobHistory[i].Supervisor" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>EndingSalaryReasonForLeaving : </label>
+                                <input name="JobHistory[i].ReasonForLeaving" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Street Address: *</label>
+                                <input name="JobHistory[i].Street" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Street Address addtional:</label>
+                                <input name="JobHistory[i].Street2" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>City: *</label>
+                                <input name="JobHistory[i].City" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>State: *</label>
+                                <input name="JobHistory[i].State" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+                                <label>Zip: *</label>
+                                <input name="JobHistory[i].Zip" type="text" class="col-lg-12 col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>(*) Mandatory</p>
+        </fieldset>
+    }
+
+
+
+    <!----------------------  Education section of Application form   ---------------------->
+    
+    @{ num = 0;}
+
+    @for (var j = 0; j < 3; ++j)
+    {
+        num = j + 1;
+
+
+    <h1>Edu @num:</h1>
+    <fieldset>
+        <legend style="margin-bottom: -30px;">Education @num:</legend>
+
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>School Name: </label>
+                            <input name="Education[i].SchoolName" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Years Attended:</label>
+                            <input name="Education[i].YearsAttended" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Date Graduated: *</label>
+                            <input name="Education[i].Graduated" type="date" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Earned Degree:</label>
+                            <input name="Education[i].Degree" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    }
+
+
+    <!----------------------  References section of Application form  ---------------------->
+    
+    @{ num = 0;}
+
+    @for (var k = 0; k < 3; ++k)
+    {
+
+        num = k + 1;
+
+    <h1>Ref @num:</h1>
+    <fieldset style="margin-bottom: -30px;">
+        <legend style="margin-bottom: -30px;">Reference @num:</legend>
+
+       
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference's Full Name: </label>
+                            <input name="Reference[i].RefFullName" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Phone:</label>
+                            <input name="Reference[i].RefPhone" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Company:</label>
+                            <input name="Reference[i].RefCompany" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Title:</label>
+                            <input name="Reference[i].RefTitle" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+}
+
+
+    <!----------------------  Review and submission section of Application form  ---------------------->
+
+    <h1>Review:</h1>
+    <fieldset style="margin-bottom: -30px;">
+        <legend>Terms and Conditions</legend>
+        
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label>I hearby affirm that the information given by me on this application for employment is complete and accurate.  I understand that any omission of falsification of information will be immediate grounds for dismissal.</label>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <p>Plese type your full name to agree to the above statement</p>
+                    <input name="Reference[i].PreEmploymentStatement" type="text" class="col-lg-12 col-md-12">
+                </div>
+            </div>
+        </div>
+
+            <p></p>
+            <p></p>
+
+            <p>Please review your application before submitting</p>
+
+            <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+</fieldset>
+
+</form><!----------------------  end of Application form  ---------------------->
+
+<script src="~/Scripts/applicationform.js"></script>

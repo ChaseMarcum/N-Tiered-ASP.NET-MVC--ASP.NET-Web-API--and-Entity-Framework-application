@@ -1,0 +1,209 @@
+﻿@model AIM.Web.Admin.Models.EntityModels.User
+
+
+@{
+    ViewBag.Title = "Create";
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
+}
+
+<!-- This view's content starts HERE-->
+@if (ActivePermissions != null)
+{
+    if (ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "HiringSpecialist")
+    {
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Home</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "User")">Users</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Create", "User")">Create User</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row-fluid">
+    <div class="box span12">
+        <div class="box-header well">
+            <h2><i class="icon-info-sign"></i> USERS</h2>
+            <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <h2>Create User</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName)
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MiddleName)
+                            @Html.ValidationMessageFor(model => model.MiddleName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName)
+                            @Html.ValidationMessageFor(model => model.LastName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SocialSecurityNumber, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.SocialSecurityNumber)
+                            @Html.ValidationMessageFor(model => model.SocialSecurityNumber)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserName)
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.Password)
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </div>
+                    @*@Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.PersonalInfoId)
+                    @Html.HiddenFor(model => model.ApplicantId)
+                    @Html.HiddenFor(model => model.ApplicationId)
+                    @Html.HiddenFor(model => model.EmployeeId)
+                    @Html.HiddenFor(model => model.AspNetUsersId)*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}

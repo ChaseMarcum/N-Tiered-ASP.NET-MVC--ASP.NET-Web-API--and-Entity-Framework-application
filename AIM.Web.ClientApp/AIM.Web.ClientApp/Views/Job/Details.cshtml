@@ -1,0 +1,74 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.Job
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Job</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Hour.HoursId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Hour.HoursId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.InterviewQuestion.InterviewQuestionsId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.InterviewQuestion.InterviewQuestionsId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Questionnaire.QuestionnaireId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Questionnaire.QuestionnaireId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Position)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Position)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FullPartTime)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FullPartTime)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SalaryRange)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SalaryRange)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

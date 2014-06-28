@@ -1,0 +1,194 @@
+﻿@using System.Diagnostics
+@using AIM.Service.Entities.Models
+@using AIM.Web.Admin.Models.EntityModels
+@using Microsoft.Ajax.Utilities
+@model AIM.Web.Admin.Models.EntityModels.Question
+
+@{
+    ViewBag.Title = "Details";
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
+}
+
+<!-- This view's content starts HERE-->
+@if (ActiveUserName != null)
+{
+    if (ActivePermissions.ToString() == "StaffingExpert" || ActivePermissions.ToString() == "SystemAdmin")
+    {
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Home</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Question")">Questions</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Details", "Question")">Question Details</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row-fluid">
+    <div class="box span12">
+        <div class="box-header well">
+            <h2><i class="icon-info-sign"></i>QUESTIONS</h2>
+            <div class="box-icon">
+                <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <h2>Question Details</h2>
+
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QJsonType):
+                    </dt>
+
+                    <dd>
+                        @{
+                            switch (Model.QJsonType)
+                            {
+                                case TypeEnum.MultipleChoice:
+                                    <text>
+                                        Multiple Choice
+                                    </text>
+                                    break;
+                                case TypeEnum.AllThatApply:
+                                    <text>
+                                        Select All That Apply
+                                    </text>
+                                    break;
+                                case TypeEnum.FreeForm:
+                                    <text>
+                                        Free Form Question
+                                    </text>
+                                    break;
+                                default:
+                                    <text>
+                                        Type Not Set
+                                    </text>
+                                    break;
+                            }
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QJsonText):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QJsonText)
+                    </dd>
+
+                    @for (var i = 0; i < Model.QJsonOptionList.Count(); ++i)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.QJsonOptionList) @(i + 1):
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.QJsonOptionList[i])
+                        </dd>
+                    }
+
+                    @for (var i = 0; i < Model.QJsonAnswerList.Count(); ++i)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.QJsonAnswerList) @(i + 1):
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.QJsonAnswerList[i])
+                        </dd>
+                    }
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+}

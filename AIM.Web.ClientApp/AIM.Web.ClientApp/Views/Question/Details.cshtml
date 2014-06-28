@@ -1,0 +1,42 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.Question
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Question</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.QJsonProperties)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.QJsonProperties)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.QuestionnaireId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.QuestionnaireId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.InterviewQuestionsId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.InterviewQuestionsId)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.QuestionId }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

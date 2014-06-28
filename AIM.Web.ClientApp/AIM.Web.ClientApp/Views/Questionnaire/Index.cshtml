@@ -1,0 +1,239 @@
+﻿@using AIM.Web.ClientApp.Models.EntityModels
+@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.Question>
+
+@{
+    ViewBag.Title = "Index";
+    int questionNumber = 0;
+    string currentQuestion = "question1";
+    List<string> correctAnswers = new List<string>();
+    List<string> selectedAnswers = new List<string>();
+    bool question1;
+    bool question2;
+    bool question3;
+    bool question4;
+    bool question5;
+}
+
+<h2>Questionnaire</h2>
+
+@*<div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonText)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonOptionList)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonAnswerList)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">
+                        @Html.DisplayFor(modelItem => item.QJsonText)
+                    </td>
+                    <td class="center">
+                        @{
+                            switch (item.QJsonType)
+                            {
+                                case TypeEnum.MultipleChoice:
+                                    <text>
+                                        Multiple Choice
+                                    </text>
+                                    break;
+                                case TypeEnum.AllThatApply:
+                                    <text>
+                                        Select All That Apply
+                                    </text>
+                                    break;
+                                case TypeEnum.FreeForm:
+                                    <text>
+                                        Free Form Question
+                                    </text>
+                                    break;
+                                default:
+                                    <text>
+                                        Type Not Set
+                                    </text>
+                                    break;
+                                    }
+                            }
+                    </td>
+
+                    <td class="center">
+                        @for (var i = 0; i < item.QJsonOptionList.Count(); ++i)
+                        {
+                            if (i != item.QJsonOptionList.Count - 1)
+                            {
+                                <p>@item.QJsonOptionList[i], </p>
+                            }
+                            else
+                            {
+                                <p>@item.QJsonOptionList[i]</p>
+                            }
+                        }
+                    </td>
+                    <td class="center">
+                        @for (var i = 0; i < item.QJsonAnswerList.Count(); ++i)
+                        {
+                            if (i != item.QJsonAnswerList.Count - 1)
+                            {
+                                <p>@item.QJsonAnswerList[i], </p>
+                            }
+                            else
+                            {
+                                <p>@item.QJsonAnswerList[i]</p>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+    </table>
+    <div class="clearfix"></div>
+</div>*@
+
+
+
+<form id="form-3" action="#" >
+    <h1 style="">BEGIN...</h1>
+    <fieldset>
+        <legend><h2>Your future begins with a few simple questions...</h2></legend>
+        <p>
+            <h4>Please complete the following questionnaire.</h4>
+            <h4>Your answers will determine your employment eligibility.</h4>
+            <hr />
+            <hr />
+            <h4>Use the "Next" button below to begin...</h4>
+        </p>
+    </fieldset>
+
+    @foreach (var item in Model)
+    {
+    //incriment the question number for the tab title
+    questionNumber++;
+        
+    // set the fieldname to the current question number string... ie: "question1" - "question 5"    
+    currentQuestion = "question" + questionNumber.ToString();
+        
+    <h1>Question @questionNumber</h1> @*Question Title ...if needed*@
+    <fieldset>
+        <legend><h2>@Html.DisplayFor(modelItem => item.QJsonText)</h2></legend>
+        <p>
+        @{
+        switch (item.QJsonType)
+        {
+            case TypeEnum.MultipleChoice:
+                correctAnswers.Add(item.QJsonAnswerList[0]);
+
+                for (int i = 0; i < item.QJsonOptionList.Count(); ++i)
+                {
+                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="radio" value="@item.QJsonAnswerList[i]" class="required">
+                    <label for="@currentQuestion">@item.QJsonOptionList[i]</label>
+                    <br />
+                }
+
+                //if (Request.Form["@currentQuestion"] != null)
+                //{
+                //    selectedAnswers.Add(Request.Form["@currentQuestion"].ToString());
+                //}
+                break;
+            case TypeEnum.AllThatApply:
+                correctAnswers.Add(item.QJsonAnswerList[0]);
+                <h4>Check ALL that apply...</h4>
+                <hr />
+                for (int i = 0; i < item.QJsonOptionList.Count(); ++i)
+                {
+                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="checkbox" value="@item.QJsonAnswerList[i]" class="required">
+                    <label for="@currentQuestion">@item.QJsonOptionList[i]</label>
+                    <br />
+                }
+                break;
+            case TypeEnum.FreeForm:
+                correctAnswers.Add("true");
+
+                <textarea id="@currentQuestion" rows="15" class="required"></textarea>
+                break;
+            default:
+            <text>
+                Type Not Set
+            </text>
+                break;
+        }
+        }
+        </p>
+</fieldset>
+    }
+
+    <h1 style="">...SUBMIT</h1>
+    <fieldset>
+        <legend><h2>Verify and Submit</h2></legend>
+
+        <div>Please verify your answers and then click the "Finish" button.</div>
+
+        
+
+    </fieldset>
+
+</form>
+
+
+
+
+@*<form id="form-3" action="#">
+    <h1>Account</h1>
+    <fieldset>
+        <legend>Account Information</legend>
+
+        <label for="userName">User name *</label>
+        <input id="userName" name="userName" type="text" class="required">
+        <label for="password">Password *</label>
+        <input id="password" name="password" type="text" class="required">
+        <label for="confirm">Confirm Password *</label>
+        <input id="confirm" name="confirm" type="text" class="required">
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <h1>Profile</h1>
+    <fieldset>
+        <legend>Profile Information</legend>
+
+        <label for="name">First name *</label>
+        <input id="name" name="name" type="text" class="required">
+        <label for="surname">Last name *</label>
+        <input id="surname" name="surname" type="text" class="required">
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="text" class="required email">
+        <label for="address">Address</label>
+        <input id="address" name="address" type="text">
+        <label for="age">Age (The warning step will show up if age is less than 18) *</label>
+        <input id="age" name="age" type="text" class="required number">
+        <p>(*) Mandatory</p>
+    </fieldset>
+    
+    <h1>Warning</h1>
+    <fieldset>
+        <legend>You are to young</legend>
+
+        <p>Please go away ;-)</p>
+    </fieldset>
+
+    <h1>Finish</h1>
+    <fieldset>
+        <legend>Terms and Conditions</legend>
+
+        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+    </fieldset>
+</form>*@
+
+
+
+<script src="~/Scripts/Questionnaire.js"></script>

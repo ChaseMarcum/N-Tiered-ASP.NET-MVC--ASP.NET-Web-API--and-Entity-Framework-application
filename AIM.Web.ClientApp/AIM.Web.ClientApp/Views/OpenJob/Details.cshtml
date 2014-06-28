@@ -1,0 +1,72 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.OpenJob
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<div>
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <fieldset>
+            <div class="jumbotron">
+
+
+                <div>
+                    <h4>Job Opening for @ViewBag.Position</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Region.RegionName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Region.RegionName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Store.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Store.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Job.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Job.Description)
+                        </dd>
+                    </dl>
+                </div>
+
+                <div>
+                    <dl class="dl-horizontal">
+                        <dd>
+                            <a class="btn btn-success" href="@Url.Action("Index", "Questionnaire", new { id = Model.JobId })">
+                                <i class="icon-zoom-in icon-white"></i>
+                                Apply Now
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div>
+                    <p>
+                        @Html.ActionLink("Back to List", "Index", new { RegionId = Model.RegionId })
+                    </p>
+                </div>
+
+
+            </div>
+            <p>
+                <input type="submit" value="New Search" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+            </p>
+        </fieldset>
+    }
+</div>

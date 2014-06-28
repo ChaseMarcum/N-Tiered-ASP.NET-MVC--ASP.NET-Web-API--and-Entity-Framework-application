@@ -1,0 +1,43 @@
+﻿!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A powerful jQuery wizard plugin that supports accessibility and HTML5.">
+    <meta name="keywords" content="jQuery, jQuery Plugin, jQuery UI Component, jQuery Wizard, jQuery Tabs, &#10;    jQuery Steps, HTML5, JavaScript, Accessibility, jQuery Form Wizard, jQuery Form Validation, jQuery Step by Step">
+    <title>@ViewBag.Title - A.I.M. Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @*<script src="jquery.js"></script>
+    <script src="jquery.steps.js"></script>*@
+
+</head>
+
+<body>
+    
+    @*<div class="container body-content">*@
+        @RenderBody()
+        @*<hr />*@
+        @*<footer>
+            <p></p>
+            <p class="pull-left">
+                &copy; @DateTime.Now.Year - <strong>5</strong> <strong>P</strong>rogramers <strong>O</strong>f <strong>T</strong>omorrow Application
+            </p>*@
+        @*</footer>*@
+    @*</div>*@
+
+
+    <script src="~/Scripts/jquery.steps.js"></script>
+    <script src="~/Scripts/jquery.steps.min.js"></script>
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @*@Scripts.Render("~/bundles/jquerysteps")*@
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

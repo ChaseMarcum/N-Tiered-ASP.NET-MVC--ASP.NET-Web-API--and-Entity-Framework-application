@@ -1,0 +1,64 @@
+﻿@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.Region>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@*<div class="jumbotron">*@
+
+        @*<img src="~/Image/logo.png" />*@
+        @*<img src="~/Image/AEShome.png" style="width:1000px" />*@
+        @*<p class="leadDefault1" style="padding-top: 20px;">Sales pitch goes here.</p>*@
+
+@*</div>*@
+
+@*<div style="text-align: center;" >
+    @using(Html.BeginForm("Index", "OpenJob", FormMethod.Get))
+    {
+        <fieldset>
+            <h2>Select region:</h2> <select name="RegionId" class="form-control input-lg">
+                                        @foreach(var item in Model)
+                                        {
+                                            <option value=@item.RegionId>@item.RegionName</option>
+                                        }
+                                    </select>
+            <p></p>
+            <p>
+                <input type="submit" value="View Job Openings" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+            </p>
+        </fieldset>            
+    }
+</div>*@
+
+<div style="text-align: center;">
+    @using (Html.BeginForm("Index", "OpenJob", FormMethod.Get))
+{
+    <fieldset>
+        <div class="jumbotron" >
+            @*<img src="~/Image/AEShome.png" style="width:1000px; height:280px;" />*@
+            <img src="~/Image/logo.png" style="margin-bottom: 25px;" />
+
+            <hr style="border-top: 1px solid white" />
+
+            <div>
+                <h2 style="width: 25%; height: 46px; display: inline-block; text-align: left;">Select Region: </h2>
+
+                <select name="RegionId" class="form-control input-lg" style="width: 65%; display: inline-block">
+                    @foreach (var item in Model)
+                    {
+                        <option value=@item.RegionId>@item.RegionName</option>
+                    }
+                </select>
+            </div>
+
+            <hr style="border-top: 1px solid white; margin-bottom: 10px;" />
+
+        </div>
+        <p>
+            <input type="submit" value="View Job Openings" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+        </p>
+    </fieldset>
+}
+</div>

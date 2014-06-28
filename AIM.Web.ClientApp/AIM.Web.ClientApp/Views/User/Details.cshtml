@@ -1,0 +1,106 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.User
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>User</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Applicant.ApplicantId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Applicant.ApplicantId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Employee.EmployeeId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Employee.EmployeeId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PersonalInfo.Alias)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PersonalInfo.Alias)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.MiddleName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.MiddleName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SocialSecurityNumber)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SocialSecurityNumber)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ApplicationId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ApplicationId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.UserName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.UserName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Password)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Password)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

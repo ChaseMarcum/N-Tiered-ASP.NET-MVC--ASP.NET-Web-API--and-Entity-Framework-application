@@ -1,0 +1,180 @@
+﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Application>
+
+@{
+    ViewBag.Title = "Index";
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
+}
+
+@if(ActiveUserName != null)
+{ 
+	if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringSpecialist")
+        {
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsEvenings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFullTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsWeekends)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaryExpectation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreEmploymentStatement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.ApplicationId)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.ApplicantId)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.JobId)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.IsDays)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.IsEvenings)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.IsFullTime)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.IsWeekends)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.SalaryExpectation)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.PreEmploymentStatement)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.Status)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+        </td>
+    </tr>
+}
+
+</table>
+
+    
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+                    
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+}
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+                    
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+}

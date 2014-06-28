@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10E6379F-4E47-493E-BD7D-E4DE0DC14F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Web.Admin", "AIM\AIM.Web.Admin\AIM.Web.Admin.csproj", "{2DA66F5E-6D31-40C2-AE21-C2FE0D1EDDBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DCBB8175-D90F-4DA5-84E9-85EF94120FE5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DA66F5E-6D31-40C2-AE21-C2FE0D1EDDBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA66F5E-6D31-40C2-AE21-C2FE0D1EDDBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA66F5E-6D31-40C2-AE21-C2FE0D1EDDBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA66F5E-6D31-40C2-AE21-C2FE0D1EDDBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,48 @@
+﻿@model AIM.Web.ClientApp.Models.EntityModels.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QJsonProperties)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QJsonProperties)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterviewQuestionsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterviewQuestionsId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

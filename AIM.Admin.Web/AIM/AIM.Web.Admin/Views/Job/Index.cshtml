@@ -1,0 +1,206 @@
+@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Job>
+
+@{
+    ViewBag.Title = "Index";
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
+
+    var message = TempData["Message"] == null ? "" : TempData["Message"].ToString();
+}
+<!-- This view's content starts HERE-->
+@if(ActiveUserName != null)
+{
+	if(ActivePermissions.ToString() != "HiringSpecialist" && ActivePermissions.ToString() != "Employee")
+        {
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Home</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Job")">Jobs</a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <a class="btn btn-success" href="@Url.Action("Create", "Job")">
+        <i class="icon-plus icon-white"></i><i class="icon-briefcase icon-white"></i>
+        Create New
+    </a>
+</div>
+
+{
+    if (message != "")
+    {
+        <div id="myAlert" class="alert alert-info" style="margin-bottom: 0;" data-alert="alert">
+            <strong>Message! </strong> @message
+        </div>
+
+        <script type="text/javascript">
+            function showAlert() {
+                $("#myAlert").addClass("in");
+            }
+
+            window.setTimeout(function () { $("#myAlert").alert('close'); }, 2000);
+        </script>
+    }
+}
+
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header well" data-original-title>
+            <h2><i class="icon-briefcase"></i> JOBS</h2>
+            <div class="box-icon">
+                @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+            </div>
+        </div>
+
+        <div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Position)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullPartTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalaryRange)
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="center-block">
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            <td class="center-block">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td class="center-block">
+                                @Html.DisplayFor(modelItem => item.FullPartTime)
+                            </td>
+                            <td class="center-block">
+                                @Html.DisplayFor(modelItem => item.SalaryRange)
+                            </td>
+                            <td class="center-block">
+                                <div>
+                                    <a class="btn btn-success" href="@Url.Action("Edit", "Job", new { id = item.JobId })">
+                                        <i class="icon-zoom-in icon-white"></i>
+                                        Edit
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="center-block">
+                                <div>
+                                    <a class="btn btn-info" href="@Url.Action("Details", "Job", new { id = item.JobId })">
+                                        <i class="icon-edit icon-white"></i>
+                                        Details
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="center-block">
+                                <div>
+                                    <a class="btn btn-danger" href="@Url.Action("Delete", "Job", new { id = item.JobId })">
+                                        <i class="icon-trash icon-white"></i>
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+                    
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+}
+}
+else
+{
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="row-fluid">
+                <div class="span12 center login-header" style="margin-bottom: 150px">
+                    <h2>Welcome to AIM Admin</h2>
+                    <div class="img-thumbnail">
+                        <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                    </div>
+                </div><!--/span-->
+            </div><!--/row-->
+
+            <div class="row-fluid">
+                <div class="well span5 center login-box">
+                    <div class="alert alert-info">
+                        You are not authorized to view this page.
+                    </div>
+
+                    <section id="loginForm">
+                        <div>
+                            <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                                <i class="icon-zoom-in icon-white"></i>
+                                Home
+                            </a>
+                        </div>
+
+                    </section>
+
+                </div><!--/span-->
+            </div><!--/row-->
+        </div><!--/fluid-row-->
+
+    </div><!--/.fluid-container-->
+
+}
