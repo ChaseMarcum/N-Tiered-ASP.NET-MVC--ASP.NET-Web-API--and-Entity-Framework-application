@@ -1,4 +1,4 @@
-Junior-Project-N-Tiered-application
+Junior Project - N-Tiered application
 =======================================================================
 
 N-Tiered ASP.NET MVC, ASP.NET Web API, and Entity Framework application
